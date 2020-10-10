@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KmlToGeoJson", "KmlToGeoJson\KmlToGeoJson.csproj", "{0658116C-5FEA-4387-92DB-5B4CBF0A029B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KmlToGeoJson.Test", "KmlToGeoJson.Test\KmlToGeoJson.Test.csproj", "{09B9DFE3-6290-42EE-99C5-E5BAC6D630CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0658116C-5FEA-4387-92DB-5B4CBF0A029B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0658116C-5FEA-4387-92DB-5B4CBF0A029B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0658116C-5FEA-4387-92DB-5B4CBF0A029B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0658116C-5FEA-4387-92DB-5B4CBF0A029B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09B9DFE3-6290-42EE-99C5-E5BAC6D630CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09B9DFE3-6290-42EE-99C5-E5BAC6D630CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09B9DFE3-6290-42EE-99C5-E5BAC6D630CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09B9DFE3-6290-42EE-99C5-E5BAC6D630CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10B3F59B-2B14-4702-843A-E2298A314F84}
+	EndGlobalSection
+EndGlobal
