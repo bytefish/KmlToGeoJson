@@ -26,7 +26,7 @@ namespace KmlToGeoJson
         private static readonly XNamespace Kml = XNamespace.Get("http://www.opengis.net/kml/2.2");
         private static readonly XNamespace Ext = XNamespace.Get("http://www.google.com/kml/ext/2.2");
 
-        private static readonly XName[] Geotypes = new[] 
+        private static readonly XName[] Geotypes = new[]
         {
             XName.Get("Polygon", Kml.NamespaceName),
             XName.Get("LineString", Kml.NamespaceName),
@@ -45,7 +45,7 @@ namespace KmlToGeoJson
 
         public static string FromKml(XDocument document)
         {
-          
+
             var styleMapIndex = new Dictionary<string, Dictionary<string, string>>();
             var styleByHash = new Dictionary<string, XElement>();
             var styleIndex = new Dictionary<string, string>();
@@ -71,14 +71,14 @@ namespace KmlToGeoJson
 
             foreach (var style in styles)
             {
-                if(style.Attribute("id") == null)
+                if (style.Attribute("id") == null)
                 {
                     continue;
                 }
 
                 var hash = GetMD5Hash(style.ToString());
-                
-                styleIndex["#" + style.Attribute("id")?.Value ] = hash;
+
+                styleIndex["#" + style.Attribute("id")?.Value] = hash;
 
                 styleByHash[hash] = style;
             }
@@ -134,22 +134,22 @@ namespace KmlToGeoJson
 
         private static float[] GetCoordinates(string value)
         {
-            if(string.IsNullOrWhiteSpace(value))
+            if (string.IsNullOrWhiteSpace(value))
             {
                 return null;
             }
 
             return value
-                .Split(new char[] { ' ', ','})
+                .Split(new char[] { ' ', ',', '\n' })
                 .Select(x => x.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
-                .Select(x => float.Parse(x))
+                .Select(x => float.Parse(x, System.Globalization.CultureInfo.InvariantCulture))
                 .ToArray();
         }
 
         private static float[][] GetCoordinatesArray(string value)
         {
-            if(string.IsNullOrWhiteSpace(value))
+            if (string.IsNullOrWhiteSpace(value))
             {
                 return null;
             }
@@ -218,7 +218,7 @@ namespace KmlToGeoJson
                             // Get Inner Boundary Linear Ring:
                             var innerBoundaryNode = geomNode.Element(Kml + "innerBoundaryIs");
 
-                            if(innerBoundaryNode != null)
+                            if (innerBoundaryNode != null)
                             {
                                 var innerBoundaryRings = innerBoundaryNode.Elements(Kml + "LinearRing");
 
@@ -258,7 +258,7 @@ namespace KmlToGeoJson
                         else if (geotype == XName.Get("Track", Kml.NamespaceName) || geotype == XName.Get("Track", Ext.NamespaceName))
                         {
                             var track = GetGxCoords(geomNode);
-                            
+
                             if (track.Coordinates != null)
                             {
                                 var lineString = new LineString { Coordinates = track.Coordinates };
@@ -300,7 +300,7 @@ namespace KmlToGeoJson
             {
                 var coordinatesForElement = element.Value
                     .Split(" ")
-                    .Select(x => float.Parse(x))
+                    .Select(x => float.Parse(x, System.Globalization.CultureInfo.InvariantCulture))
                     .ToArray();
 
                 coordinates.Add(coordinatesForElement);
@@ -377,7 +377,7 @@ namespace KmlToGeoJson
             // Nodes:
             var timeSpan = root.Element(Kml + "TimeSpan");
             var timeStamp = root.Element(Kml + "TimeStamp");
-            
+
             // Inline Styles:
             var iconStyle = root.Element(Kml + "Style")?.Element(Kml + "IconStyle");
             var labelStyle = root.Element(Kml + "Style")?.Element(Kml + "LabelStyle");
@@ -481,8 +481,8 @@ namespace KmlToGeoJson
 
                 if (hotspot != null)
                 {
-                    float left = float.Parse(hotspot.Attribute("x").Value);
-                    float top = float.Parse(hotspot.Attribute("y").Value);
+                    float left = float.Parse(hotspot.Attribute("x").Value, System.Globalization.CultureInfo.InvariantCulture);
+                    float top = float.Parse(hotspot.Attribute("y").Value, System.Globalization.CultureInfo.InvariantCulture);
                     if (!float.IsNaN(left) && !float.IsNaN(top))
                     {
                         properties["icon-offset"] = new float[] { left, top };

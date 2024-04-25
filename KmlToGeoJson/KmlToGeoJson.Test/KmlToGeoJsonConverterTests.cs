@@ -9,6 +9,7 @@ namespace KmlToGeoJson.Test
 {
     public class GeoJsonConverterTests
     {
+        private System.Globalization.CultureInfo _defaultCulture;
         private readonly string[] testFileList = new[]
         {
             "addresses.kml",
@@ -36,13 +37,22 @@ namespace KmlToGeoJson.Test
             "timespan.kml",
             "twopoints.kml"
         };
-
+        [OneTimeSetUp]
+        public void Setup()
+        {
+            _defaultCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+        }
+        [TearDown]
+        public void TearDown()
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture = _defaultCulture;
+        }
         [Test]
         public void RunFiles()
         {
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
 
-            foreach(var filename in testFileList)
+            foreach (var filename in testFileList)
             {
                 var filePath = Path.Combine(basePath, "Resources", "Kml", filename);
 
@@ -51,5 +61,20 @@ namespace KmlToGeoJson.Test
                 Assert.DoesNotThrow(() => KmlToGeoJsonConverter.FromKml(xml));
             }
         }
+        [Test]
+        public void RunFiles_Culture_With_Comma_As_Decimal_Separator()
+        {
+            var basePath = AppDomain.CurrentDomain.BaseDirectory;
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("nb-NO");
+            foreach (var filename in testFileList)
+            {
+                var filePath = Path.Combine(basePath, "Resources", "Kml", filename);
+
+                var xml = File.ReadAllText(filePath);
+
+                Assert.DoesNotThrow(() => KmlToGeoJsonConverter.FromKml(xml));
+            }
+        }
+
     }
 }
