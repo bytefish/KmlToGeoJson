@@ -3,9 +3,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using KmlToGeoJson.Model;
@@ -124,7 +126,7 @@ namespace KmlToGeoJson
 
             var options = new JsonSerializerOptions
             {
-                IgnoreNullValues = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 WriteIndented = true
             };
 
@@ -143,7 +145,7 @@ namespace KmlToGeoJson
                 .Split(new char[] { ' ', ',', '\n' })
                 .Select(x => x.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
-                .Select(x => float.Parse(x, System.Globalization.CultureInfo.InvariantCulture))
+                .Select(x => float.Parse(x, CultureInfo.InvariantCulture))
                 .ToArray();
         }
 
@@ -300,7 +302,7 @@ namespace KmlToGeoJson
             {
                 var coordinatesForElement = element.Value
                     .Split(" ")
-                    .Select(x => float.Parse(x, System.Globalization.CultureInfo.InvariantCulture))
+                    .Select(x => float.Parse(x, CultureInfo.InvariantCulture))
                     .ToArray();
 
                 coordinates.Add(coordinatesForElement);
@@ -354,7 +356,7 @@ namespace KmlToGeoJson
                 return;
             }
 
-            if (float.TryParse(nodeValue, out float result))
+            if (float.TryParse(nodeValue, NumberStyles.Any, CultureInfo.InvariantCulture, out float result))
             {
                 if (!float.IsNaN(result))
                 {
@@ -481,8 +483,8 @@ namespace KmlToGeoJson
 
                 if (hotspot != null)
                 {
-                    float left = float.Parse(hotspot.Attribute("x").Value, System.Globalization.CultureInfo.InvariantCulture);
-                    float top = float.Parse(hotspot.Attribute("y").Value, System.Globalization.CultureInfo.InvariantCulture);
+                    float left = float.Parse(hotspot.Attribute("x").Value, CultureInfo.InvariantCulture);
+                    float top = float.Parse(hotspot.Attribute("y").Value, CultureInfo.InvariantCulture);
                     if (!float.IsNaN(left) && !float.IsNaN(top))
                     {
                         properties["icon-offset"] = new float[] { left, top };
