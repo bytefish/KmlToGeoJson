@@ -2,10 +2,10 @@
 
   <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <Version>0.1.0</Version>
+        <Version>0.2.0</Version>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>A small library to convert from KML to GeoJSON.</Description>
-        <Copyright>Copyright © 2020 Philipp Wagner</Copyright>
+        <Copyright>Copyright © 2024</Copyright>
         <PackageId>KmlToGeoJson</PackageId>
         <PackageProjectUrl>https://github.com/bytefish/KmlToGeoJson</PackageProjectUrl>
         <RepositoryUrl>https://github.com/bytefish/KmlToGeoJson</RepositoryUrl>
