@@ -8,7 +8,7 @@ namespace KmlToGeoJson.Model
 {
     public class Feature
     {
-        [JsonPropertyName("feature")]
+        [JsonPropertyName("type")]
         public string Type { get; private set; } = "Feature";
 
         [JsonPropertyName("id")]
