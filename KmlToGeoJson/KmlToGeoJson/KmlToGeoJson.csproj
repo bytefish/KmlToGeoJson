@@ -2,7 +2,7 @@
 
   <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <Version>0.2.0</Version>
+        <Version>0.3.0</Version>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>A small library to convert from KML to GeoJSON.</Description>
         <Copyright>Copyright © 2024</Copyright>
