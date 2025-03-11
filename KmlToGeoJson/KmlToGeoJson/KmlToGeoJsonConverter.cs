@@ -383,9 +383,11 @@ namespace KmlToGeoJson
             // Inline Styles:
             var iconStyle = root.Element(Kml + "Style")?.Element(Kml + "IconStyle");
             var labelStyle = root.Element(Kml + "Style")?.Element(Kml + "LabelStyle");
-            var extendedData = root.Element(Kml + "Style")?.Element(Kml + "ExtendedData");
             var lineStyle = root.Element(Kml + "Style")?.Element(Kml + "LineStyle");
             var polyStyle = root.Element(Kml + "Style")?.Element(Kml + "PolyStyle");
+
+            // Extended Data
+            var extendedData = root.Element(Kml + "ExtendedData");
 
             var visibility = root.Element(Kml + "visibility");
 
