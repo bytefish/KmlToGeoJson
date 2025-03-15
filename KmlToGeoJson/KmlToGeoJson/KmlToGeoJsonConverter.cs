@@ -1,5 +1,4 @@
-﻿// Copyright (c) Philipp Wagner. All rights reserved.
-// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+﻿// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System;
 using System.Collections.Generic;
@@ -18,10 +17,6 @@ namespace KmlToGeoJson
     /// This is a shameless copy from: https://github.com/tmcw/togeojson/blob/master/lib/kml.js, so there is 
     /// no need for taking additional dependencies on third-party libraries. Updates to kml.js should be 
     /// reflected here.
-    /// 
-    /// The Object Model is intentionally ugly (no abstract classes, no interfaces), because this would make 
-    /// Deserialization with .NET Core System.Text.Json complicated or impossible, see the Open Issue at:
-    /// https://github.com/dotnet/runtime/issues/30083.
     /// </summary>
     public partial class KmlToGeoJsonConverter
     {
@@ -36,7 +31,6 @@ namespace KmlToGeoJson
             XName.Get("Track", Kml.NamespaceName),
             XName.Get("Track", Ext.NamespaceName)
         };
-
 
         public static string FromKml(string xml)
         {
@@ -132,7 +126,6 @@ namespace KmlToGeoJson
 
             return JsonSerializer.Serialize(result, options: options);
         }
-
 
         private static float[] GetCoordinates(string value)
         {
