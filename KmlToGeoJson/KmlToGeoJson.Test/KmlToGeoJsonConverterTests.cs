@@ -1,6 +1,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Threading;
@@ -92,5 +93,36 @@ namespace KmlToGeoJson.Test
             }
         }
 
+        [TestMethod]
+        public void ParseCoordinatesinLogKml()
+        {
+            Exception? caught = null;
+            var basePath = AppDomain.CurrentDomain.BaseDirectory;
+            var filePath = Path.Combine(basePath, "Resources", "Kml", "Log.kml");
+            var xml = File.ReadAllText(filePath);
+
+            try
+            {
+                var jsonResult = KmlToGeoJsonConverter.FromKml(xml);
+                JObject json = JObject.Parse(jsonResult);
+                var coordinates = json?["features"]?[0]?["geometry"]?["coordinates"] as JArray;
+
+                Assert.IsNotNull(coordinates);
+                Assert.IsTrue(coordinates.Count > 0);
+                Assert.AreEqual<int>(10, coordinates.Count);
+
+                for (int i = 0; i < coordinates.Count; i++)
+                {
+                    var row = coordinates[i] as JArray;
+                    Assert.AreEqual<int>(3, row?.Count);
+                }
+            }
+            catch (Exception ex)
+            {
+                caught = ex;
+            }
+
+            Assert.IsNull(caught);
+        }
     }
 }

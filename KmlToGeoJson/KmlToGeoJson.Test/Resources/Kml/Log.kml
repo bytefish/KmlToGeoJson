@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+  <Document>
+    <name>name</name>
+    <description></description>
+    <Style id="idStyle">
+      <LineStyle>
+        <color>7dff0000</color>
+        <width>3</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7dff0000</color>
+      </PolyStyle>
+    </Style>
+    <Style id="pushpin_fix">
+      <IconStyle>
+        <scale>1.0</scale>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+        </Icon>
+        <hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+    </Style>
+    
+    <Placemark>
+      <name>name</name>
+      <styleUrl>#idStyle</styleUrl>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <altitudeMode>absolute</altitudeMode>
+        <coordinates>
+			12.6503603116825,55.6257276327793,6.19920503554083
+12.6503867379705,55.6257275587082,6.2052865495729
+12.6504064580788,55.6257275431151,6.21095047249692
+12.6504262023111,55.6257275394716,6.21762288198571
+12.6504460820275,55.6257274989362,6.22628022352407
+12.6504664421438,55.6257274487751,6.23299785251572
+12.6504862578288,55.6257274217683,6.23891583035783
+12.6505061832885,55.6257273804019,6.24219195769517
+12.6505266031554,55.6257273390967,6.23872151835085
+12.6505471922301,55.625727308826,6.23629229259414
+        </coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>
