@@ -44,6 +44,9 @@
     <None Update="Resources\Kml\literal_color.kml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\Kml\Log.kml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Kml\multigeometry.kml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

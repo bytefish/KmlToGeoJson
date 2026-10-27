@@ -150,7 +150,7 @@ namespace KmlToGeoJson
             }
 
             return value
-                .Split(" ")
+                .Split(new char[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Trim())
                 .Select(x => GetCoordinates(x))
                 .Where(x => x != null)
